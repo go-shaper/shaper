@@ -33,6 +33,7 @@ type Shaper struct {
 ////////////////////////////////////////////////////////////////////////////
 // Function definitions
 
+// PassThrough will return the string as-is, used primarily for NewFilter()
 func PassThrough(s string) string {
 	return s
 }
@@ -66,16 +67,19 @@ func (me *Shaper) AddFilter(f func(string) string) *Shaper {
 	return me
 }
 
+// ApplyToLower will apply/add the strings.ToLower filter to the Shaper
 func (me *Shaper) ApplyToLower() *Shaper {
 	me.AddFilter(strings.ToLower)
 	return me
 }
 
+// ApplyToUpper will apply/add the strings.ToUpper filter to the Shaper
 func (me *Shaper) ApplyToUpper() *Shaper {
 	me.AddFilter(strings.ToUpper)
 	return me
 }
 
+// ApplyReplace will apply/add the strings.Replace filter to the Shaper
 func (me *Shaper) ApplyReplace(old, new string, times int) *Shaper {
 	me.AddFilter(func(s string) string {
 		return strings.Replace(s, old, new, times)
@@ -83,6 +87,7 @@ func (me *Shaper) ApplyReplace(old, new string, times int) *Shaper {
 	return me
 }
 
+// ApplyRegexpReplaceAll will apply/add the regexp.ReplaceAllString filter to the Shaper
 func (me *Shaper) ApplyRegexpReplaceAll(rexp, repl string) *Shaper {
 	me.AddFilter(func(s string) string {
 		return regexp.MustCompile(rexp).ReplaceAllString(s, repl)
