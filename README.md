@@ -10,7 +10,28 @@ The `shaper` project provides general purpose building blocks to shape strings i
 
 Architected by Howard C. Shaw III, it needs neither go-routines nor channels. Instead, it creates a composable set of filters you could keep around and apply to a single string at a time. Behind the scenes, it is still building a composition of functions, but by currying that composition into a new function and holding the state of the stack in a struct, it restores the left-right ordering of the filters. Note that the filter stages are basically just compile-time freezes of a call to the currying function; i.e., no matter how complicated the shaping filter chain is, all are done at the compile time, so no run-time overhead when using `shaper`. 
 
-Check out the [provided examples](https://godoc.org/github.com/go-shaper/shaper#example-package--Output)  to see how to use it, and the [![Go Doc](https://godoc.org/github.com/go-shaper/shaper?status.svg)](https://godoc.org/github.com/go-shaper/shaper) document for further details.
+Check out the [provided examples](https://godoc.org/github.com/go-shaper/shaper#example-package--Output)  to see how to use it with the ready-made filters, and the [![Go Doc](https://godoc.org/github.com/go-shaper/shaper?status.svg)](https://godoc.org/github.com/go-shaper/shaper) document for further details.
 
+To extend and add your own filters:
+
+```go
+// Shaper extends shaper.Shaper
+type Shaper struct {
+        *shaper.Shaper
+}
+
+// NewFilter makes a new Shaper filter
+func NewFilter() *Shaper {
+        return &Shaper{Shaper: shaper.NewFilter()}
+}
+
+// HTMLUnescape provides html.UnescapeString filtering function
+func (shpr *Shaper) HTMLUnescape() *Shaper {
+        shpr.AddFilter(html.UnescapeString)
+        return shpr
+}
+
+...
+```
 
 All patches welcome. 
