@@ -70,7 +70,7 @@ func Example_output() {
 }
 
 func Example() {
-	// == Extending shaper.Shaper to add your own filters filters
+	// == Extending shaper.Shaper to add your own filters
 	var hu *Shaper
 	hu = NewFilter()
 	hu.ApplyHTMLUnescape()
