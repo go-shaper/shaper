@@ -1,12 +1,33 @@
 package shaper_test
 
-import "fmt"
+import (
+	"fmt"
+	"html"
+)
 
 import (
 	"github.com/go-shaper/shaper"
 )
 
+// Shaper extends shaper.Shaper
+type Shaper struct {
+	*shaper.Shaper
+}
+
+// NewFilter makes a new Shaper filter
+func NewFilter() *Shaper {
+	return &Shaper{Shaper: shaper.NewFilter()}
+}
+
+// ApplyHTMLUnescape will apply/add to html.UnescapeString filter to the Shaper
+func (shpr *Shaper) ApplyHTMLUnescape() *Shaper {
+	shpr.AddFilter(html.UnescapeString)
+	return shpr
+}
+
 func Example_output() {
+	// == Using ready-made filters
+
 	// Construct pipelines
 	UpCase := shaper.NewFilter().ApplyToUpper()
 	LCase := shaper.NewFilter().ApplyToLower()
@@ -32,7 +53,15 @@ func Example_output() {
 	RegReplace := shaper.NewFilter().ApplyRegexpReplaceAll("(?i)ht(ml)", "X$1")
 	fmt.Printf("%s\n", RegReplace.Process("This is html Html HTML."))
 
+	// == Extending shaper.Shaper to add your own filters filters
+	var hu *Shaper
+	hu = NewFilter()
+	hu.ApplyHTMLUnescape()
+	fmt.Printf("%s\n", hu.Process("2 &gt;= 1"))
+
+	// == All done.
 	fmt.Printf("Finished.\n")
+
 	// Output:
 	// THIS IS A TEST.
 	// this is a test.
@@ -42,6 +71,7 @@ func Example_output() {
 	// THIS IS ALSO A BISCUIT. TESTIFICATE.
 	// this is also a biscuit. biscuitificate.
 	// This is Xml Xml XML.
+	// 2 >= 1
 	// Finished.
 
 }

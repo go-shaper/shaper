@@ -25,8 +25,8 @@ func NewFilter() *Shaper {
         return &Shaper{Shaper: shaper.NewFilter()}
 }
 
-// HTMLUnescape provides html.UnescapeString filtering function
-func (shpr *Shaper) HTMLUnescape() *Shaper {
+// ApplyHTMLUnescape will apply/add to html.UnescapeString filter to the Shaper
+func (shpr *Shaper) ApplyHTMLUnescape() *Shaper {
         shpr.AddFilter(html.UnescapeString)
         return shpr
 }
