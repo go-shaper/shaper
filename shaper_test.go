@@ -53,12 +53,6 @@ func Example_output() {
 	RegReplace := shaper.NewFilter().ApplyRegexpReplaceAll("(?i)ht(ml)", "X$1")
 	fmt.Printf("%s\n", RegReplace.Process("This is html Html HTML."))
 
-	// == Extending shaper.Shaper to add your own filters filters
-	var hu *Shaper
-	hu = NewFilter()
-	hu.ApplyHTMLUnescape()
-	fmt.Printf("%s\n", hu.Process("2 &gt;= 1"))
-
 	// == All done.
 	fmt.Printf("Finished.\n")
 
@@ -71,7 +65,16 @@ func Example_output() {
 	// THIS IS ALSO A BISCUIT. TESTIFICATE.
 	// this is also a biscuit. biscuitificate.
 	// This is Xml Xml XML.
-	// 2 >= 1
 	// Finished.
 
+}
+
+func Example() {
+	// == Extending shaper.Shaper to add your own filters filters
+	var hu *Shaper
+	hu = NewFilter()
+	hu.ApplyHTMLUnescape()
+	fmt.Printf("%s\n", hu.Process("2 &gt;= 1"))
+	// Output:
+	// 2 >= 1
 }
