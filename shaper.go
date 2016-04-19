@@ -23,6 +23,7 @@ import (
 ////////////////////////////////////////////////////////////////////////////
 // Constant and data type/structure definitions
 
+// Shaper struct holds the filter chain
 type Shaper struct {
 	ShaperStack func(string) string
 }
@@ -38,7 +39,7 @@ func PassThrough(s string) string {
 	return s
 }
 
-// Make a new Shaper filter and start adding bits
+// NewFilter makes a new Shaper filter
 func NewFilter() *Shaper {
 	return &Shaper{ShaperStack: PassThrough}
 }
@@ -52,12 +53,12 @@ func (me *Shaper) Copy() *Shaper {
 	}
 }
 
-// Call this on the returned object to actually process a string
+// Process will actually process a string using the built-up filter chain
 func (me *Shaper) Process(s string) string {
 	return me.ShaperStack(s)
 }
 
-// Use this to apply arbitrary filters
+// AddFilter is used to apply arbitrary filters
 func (me *Shaper) AddFilter(f func(string) string) *Shaper {
 	me.ShaperStack = func(a func(string) string, b func(string) string) func(string) string {
 		return func(s string) string {
