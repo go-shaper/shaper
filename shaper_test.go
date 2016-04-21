@@ -9,21 +9,8 @@ import (
 	"github.com/go-shaper/shaper"
 )
 
-// Shaper extends shaper.Shaper
-type Shaper struct {
-	*shaper.Shaper
-}
-
-// NewFilter makes a new Shaper filter
-func NewFilter() *Shaper {
-	return &Shaper{Shaper: shaper.NewFilter()}
-}
-
-// ApplyHTMLUnescape will apply/add to html.UnescapeString filter to the Shaper
-func (shpr *Shaper) ApplyHTMLUnescape() *Shaper {
-	shpr.AddFilter(html.UnescapeString)
-	return shpr
-}
+////////////////////////////////////////////////////////////////////////////
+// How to use it with the ready-made filters
 
 func Example_output() {
 	// == Using ready-made filters
@@ -69,7 +56,26 @@ func Example_output() {
 
 }
 
-func Example() {
+////////////////////////////////////////////////////////////////////////////
+// Extending shaper.Shaper
+
+// Shaper extends shaper.Shaper
+type Shaper struct {
+	*shaper.Shaper
+}
+
+// NewFilter makes a new Shaper filter
+func NewFilter() *Shaper {
+	return &Shaper{Shaper: shaper.NewFilter()}
+}
+
+// ApplyHTMLUnescape will apply/add to html.UnescapeString filter to the Shaper
+func (shpr *Shaper) ApplyHTMLUnescape() *Shaper {
+	shpr.AddFilter(html.UnescapeString)
+	return shpr
+}
+
+func ExampleShaper() {
 	// == Extending shaper.Shaper to add your own filters
 	var hu *Shaper
 	hu = NewFilter()
