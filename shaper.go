@@ -102,3 +102,12 @@ func (shaper *Shaper) ApplyRegexpReplaceAll(rexp, repl string) *Shaper {
 	})
 	return shaper
 }
+
+// ApplyRegSpaces will apply/add the regular-spaces filter to the Shaper
+// to consolidate the string to be single-space delimited
+func (shaper *Shaper) ApplyRegSpaces() *Shaper {
+	shaper.AddFilter(func(s string) string {
+		return regexp.MustCompile(`\s\s+`).ReplaceAllString(s, " ")
+	})
+	return shaper
+}

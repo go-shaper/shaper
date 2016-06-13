@@ -42,9 +42,12 @@ func Example_output() {
 
 	// Test trim
 	spTrim := shaper.NewFilter().ApplyTrim()
-	stFrom := " \t\n a lone gopher \n\t\r\n"
+	stFrom := " \t\n a   long \t lone\t gopher \n\t\r\n"
 	stTo := spTrim.Process(stFrom)
 	fmt.Printf("F: %q\nT: %q\n", stFrom, stTo)
+	spTrim.ApplyRegSpaces()
+	stTo = spTrim.Process(stFrom)
+	fmt.Printf("R: %q\n", stTo)
 
 	// == All done.
 	fmt.Printf("Finished.\n")
@@ -58,8 +61,9 @@ func Example_output() {
 	// THIS IS ALSO A BISCUIT. TESTIFICATE.
 	// this is also a biscuit. biscuitificate.
 	// This is Xml Xml XML.
-	// F: " \t\n a lone gopher \n\t\r\n"
-	// T: "a lone gopher"
+	// F: " \t\n a   long \t lone\t gopher \n\t\r\n"
+	// T: "a   long \t lone\t gopher"
+	// R: "a long lone gopher"
 	// Finished.
 
 }
