@@ -19,12 +19,17 @@ func Example_output() {
 	UpCase := shaper.NewFilter().ApplyToUpper()
 	LCase := shaper.NewFilter().ApplyToLower()
 	Replace := shaper.NewFilter().ApplyReplace("test", "biscuit", -1)
-	RU := shaper.NewFilter().ApplyReplace("test", "biscuit", -1).ApplyToUpper()
 
 	// Test pipelines
 	fmt.Printf("%s\n", UpCase.Process("This is a test."))
 	fmt.Printf("%s\n", LCase.Process("This is a test."))
 	fmt.Printf("%s\n", Replace.Process("This is a test."))
+
+	// Demonstrating copy
+	// to retain the `Replace` functionality but have another filter building
+	// on top of it. Note: without the `Copy()`, the next call to Replace will
+	// be affected by the ToUpper
+	RU := Replace.Copy().ApplyToUpper()
 	fmt.Printf("%s\n", RU.Process("This is a test."))
 
 	// Note that we can reuse these stacks as many times as we like
