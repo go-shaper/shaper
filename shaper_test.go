@@ -40,6 +40,12 @@ func Example_output() {
 	RegReplace := shaper.NewFilter().ApplyRegexpReplaceAll("(?i)ht(ml)", "X$1")
 	fmt.Printf("%s\n", RegReplace.Process("This is html Html HTML."))
 
+	// Test trim
+	spTrim := shaper.NewFilter().ApplyTrim()
+	stFrom := " \t\n a lone gopher \n\t\r\n"
+	stTo := spTrim.Process(stFrom)
+	fmt.Printf("F: %q\nT: %q\n", stFrom, stTo)
+
 	// == All done.
 	fmt.Printf("Finished.\n")
 
@@ -52,6 +58,8 @@ func Example_output() {
 	// THIS IS ALSO A BISCUIT. TESTIFICATE.
 	// this is also a biscuit. biscuitificate.
 	// This is Xml Xml XML.
+	// F: " \t\n a lone gopher \n\t\r\n"
+	// T: "a lone gopher"
 	// Finished.
 
 }
