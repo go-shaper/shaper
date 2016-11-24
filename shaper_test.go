@@ -54,6 +54,11 @@ func Example_output() {
 	stTo = spTrim.Process(stFrom)
 	fmt.Printf("R: %q\n", stTo)
 
+	// Test ProcessAny
+	fmt.Printf("%s\n", LCase.ProcessAny("This is also a test. Testificate."))
+	fmt.Printf("%s\n",
+		LCase.ProcessAny([]string{"This is also a test.", " Testificate."}))
+
 	// == All done.
 	fmt.Printf("Finished.\n")
 
@@ -69,6 +74,8 @@ func Example_output() {
 	// F: " \t\n a   long \t lone\t gopher \n\t\r\n"
 	// T: "a   long \t lone\t gopher"
 	// R: "a long lone gopher"
+	// this is also a biscuit. biscuitificate.
+	// this is also a biscuit. biscuitificate.
 	// Finished.
 
 }

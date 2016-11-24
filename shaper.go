@@ -58,6 +58,21 @@ func (shaper *Shaper) Process(s string) string {
 	return shaper.ShaperStack(s)
 }
 
+// ProcessAny will do the actual processing using the built-up filter chain on the given `interface{}` type input
+func (shaper *Shaper) ProcessAny(si interface{}) string {
+	if s, found := si.(string); found {
+		return shaper.ShaperStack(s)
+	}
+	if sa, found := si.([]string); found {
+		r := ""
+		for _, s := range sa {
+			r += shaper.ShaperStack(s)
+		}
+		return r
+	}
+	return ""
+}
+
 // AddFilter is used to apply arbitrary filters
 func (shaper *Shaper) AddFilter(f func(string) string) *Shaper {
 	shaper.ShaperStack = func(a func(string) string, b func(string) string) func(string) string {
