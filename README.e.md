@@ -1,10 +1,7 @@
 
 # {{.Name}}
 
-[![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-{{template "badge/godoc" .}}{{template "badge/goreport" .}}
-<-- {{render "badge/codeship" . "CsUUID" "04245480-e7ff-0133-dc96-46bb3aa6b241"}} -->
-[ ![Codeship Status for go-shaper/shaper](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/projects/147070)
+[![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE){{template "badge/godoc" .}}{{template "badge/goreport" .}}[ ![Codeship Status for go-shaper/shaper](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/projects/147070)
 
 # {{toc 5}}
 

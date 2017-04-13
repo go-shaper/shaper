@@ -2,12 +2,9 @@
 # shaper
 
 [![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
 [![GoDoc](https://godoc.org/github.com/go-shaper/shaper?status.svg)](http://godoc.org/github.com/go-shaper/shaper)
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-shaper/shaper)](https://goreportcard.com/report/github.com/go-shaper/shaper)
-
-<-- [![codeship Status](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/04245480-e7ff-0133-dc96-46bb3aa6b241) -->
 [ ![Codeship Status for go-shaper/shaper](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/projects/147070)
 
 # TOC
