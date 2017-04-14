@@ -4,7 +4,7 @@
 [![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GoDoc](https://godoc.org/github.com/go-shaper/shaper?status.svg)](http://godoc.org/github.com/go-shaper/shaper)
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-shaper/shaper)](https://goreportcard.com/report/github.com/go-shaper/shaper)
-[![codeship Status](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/147070)
+[![codeship Status](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/projects/147070)
 
 ## TOC
 - [shaper - shape strings into desired forms](#shaper---shape-strings-into-desired-forms)
@@ -142,4 +142,3 @@ func ExampleShaper() {
 
 
 All patches welcome. 
-
