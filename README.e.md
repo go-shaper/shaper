@@ -1,9 +1,12 @@
 
 # {{.Name}}
 
-[![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE){{template "badge/godoc" .}}{{template "badge/goreport" .}}[ ![Codeship Status for go-shaper/shaper](https://codeship.com/projects/04245480-e7ff-0133-dc96-46bb3aa6b241/status?branch=master)](https://codeship.com/projects/147070)
+{{render "license/shields" . "License" "MIT"}}
+{{template "badge/godoc" .}}
+{{template "badge/goreport" .}}
+{{render "badge/codeship" . "CsUUID" "04245480-e7ff-0133-dc96-46bb3aa6b241" "CsProjectID" "147070"}}
 
-# {{toc 5}}
+## {{toc 5}}
 
 # shaper - shape strings into desired forms
 
@@ -17,7 +20,7 @@ Check out the [provided examples](https://godoc.org/github.com/go-shaper/shaper#
 
 To extend and add your own filters take a look at `func ExampleShaper` in:
 
-{{cat "shaper_test.go" | color "go"}}
+#### > {{cat "shaper_test.go" | color "go"}}
 
 
 All patches welcome. 
