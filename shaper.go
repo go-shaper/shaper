@@ -102,6 +102,12 @@ func (shaper *Shaper) ApplyToUpper() *Shaper {
 	return shaper
 }
 
+// ApplyTitle will apply/add the strings.Title filter to the Shaper
+func (shaper *Shaper) ApplyTitle() *Shaper {
+	shaper.AddShaper(strings.Title)
+	return shaper
+}
+
 // ApplyReplace will apply/add the strings.Replace filter to the Shaper
 func (shaper *Shaper) ApplyReplace(old, new string, times int) *Shaper {
 	shaper.AddShaper(func(s string) string {
