@@ -16,9 +16,9 @@ func Example_output() {
 	// == Using ready-made filters
 
 	// Construct pipelines
-	UpCase := shaper.NewFilter().ApplyToUpper()
-	LCase := shaper.NewFilter().ApplyToLower()
-	Replace := shaper.NewFilter().ApplyReplace("test", "biscuit", -1)
+	UpCase := shaper.NewShaper().ApplyToUpper()
+	LCase := shaper.NewShaper().ApplyToLower()
+	Replace := shaper.NewShaper().ApplyReplace("test", "biscuit", -1)
 
 	// Test pipelines
 	fmt.Printf("%s\n", UpCase.Process("This is a test."))
@@ -42,11 +42,11 @@ func Example_output() {
 	fmt.Printf("%s\n", LCase.Process("This is also a test. Testificate."))
 
 	// Regexp.ReplaceAll
-	RegReplace := shaper.NewFilter().ApplyRegexpReplaceAll("(?i)ht(ml)", "X$1")
+	RegReplace := shaper.NewShaper().ApplyRegexpReplaceAll("(?i)ht(ml)", "X$1")
 	fmt.Printf("%s\n", RegReplace.Process("This is html Html HTML."))
 
 	// Test trim
-	spTrim := shaper.NewFilter().ApplyTrim()
+	spTrim := shaper.NewShaper().ApplyTrim()
 	stFrom := " \t\n a   long \t lone\t gopher \n\t\r\n"
 	stTo := spTrim.Process(stFrom)
 	fmt.Printf("F: %q\nT: %q\n", stFrom, stTo)
@@ -88,21 +88,21 @@ type Shaper struct {
 	*shaper.Shaper
 }
 
-// NewFilter makes a new Shaper filter
-func NewFilter() *Shaper {
-	return &Shaper{Shaper: shaper.NewFilter()}
+// NewShaper makes a new Shaper filter
+func NewShaper() *Shaper {
+	return &Shaper{Shaper: shaper.NewShaper()}
 }
 
 // ApplyHTMLUnescape will apply/add to html.UnescapeString filter to the Shaper
 func (shpr *Shaper) ApplyHTMLUnescape() *Shaper {
-	shpr.AddFilter(html.UnescapeString)
+	shpr.AddShaper(html.UnescapeString)
 	return shpr
 }
 
 func ExampleShaper() {
 	// == Extending shaper.Shaper to add your own filters
 	var hu *Shaper
-	hu = NewFilter()
+	hu = NewShaper()
 	hu.ApplyToUpper()
 	fmt.Printf("%s\n", hu.Process("2 &gt;= 1"))
 	hu.ApplyHTMLUnescape()
