@@ -2,6 +2,7 @@ package shpHTML
 
 import (
 	"html"
+	"regexp"
 
 	"github.com/go-shaper/shaper"
 )
@@ -23,4 +24,12 @@ func NewShaper() *ShpHTML {
 func (shpr *ShpHTML) ApplyHTMLUnescape() *ShpHTML {
 	shpr.AddShaper(html.UnescapeString)
 	return shpr
+}
+
+// ApplyTagRemove will apply/add a simple html tag removal filter to the Shaper
+func (shaper *ShpHTML) ApplyTagRemove() *ShpHTML {
+	shaper.AddShaper(func(s string) string {
+		return regexp.MustCompile(`<.+?>`).ReplaceAllString(s, "")
+	})
+	return shaper
 }
