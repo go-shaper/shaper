@@ -83,6 +83,12 @@ func (shaper *Shaper) AddShaper(f func(string) string) *Shaper {
 	return shaper
 }
 
+// NoOp will do nothing.
+// It is used to convert the extended class back to the base class.
+func (shaper *Shaper) NoOp() *Shaper {
+	return shaper
+}
+
 // ApplyTrim will apply/add the strings.TrimSpace filter to the Shaper
 // to trim all leading and trailing white spaces
 func (shaper *Shaper) ApplyTrim() *Shaper {
